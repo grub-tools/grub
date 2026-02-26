@@ -8,7 +8,7 @@ license = "MIT"
 repository = "https://github.com/grub-tools/grub"
 
 [dependencies]
-grub-core = { path = "../core" }
+grub-core = { path = "../core", version = "0.1.0" }
 clap = { version = "4", features = ["derive"] }
 reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
 serde = { version = "1", features = ["derive"] }
