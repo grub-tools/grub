@@ -24,12 +24,11 @@
   <link rel="icon" href="assets/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-  <script>
-    (function() {
-      var m = localStorage.getItem('colorVisionMode');
-      if (m) document.documentElement.dataset.colorVision = m;
-    })();
-  </script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Fraunces:opsz,wght@9..144,300;9..144,700;9..144,900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -44,7 +43,7 @@
         <li><a href="#how-it-works">How it works</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#cli">CLI</a></li>
-        <li><a href="https://github.com/keiththompson/grub" rel="noopener">GitHub</a></li>
+        <li><a href="https://github.com/grub-tools/grub" rel="noopener">GitHub</a></li>
       </ul>
     </div>
   </header>
@@ -53,171 +52,120 @@
     <!-- ===== HERO ===== -->
     <section class="hero">
       <div class="container">
-        <picture>
-          <source srcset="assets/mascot.webp" type="image/webp">
-          <img class="hero-mascot" src="assets/mascot.png" alt="grub mascot" width="180" height="180">
-        </picture>
-        <h1>Know what you're eating.</h1>
-        <p class="subtitle">No subscription, no account, your data stays yours.</p>
+        <h1>Know what<br>you're eating.</h1>
+        <p class="subtitle">A calorie tracker that respects your privacy. Scan, log, and understand your nutrition — no account, no subscription, no data leaving your device.</p>
         <div class="hero-ctas">
-          <a href="#pricing" class="badge">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-            App Store <span class="coming-soon">Coming Soon</span>
-          </a>
-          <a href="#pricing" class="badge">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm.91-.52l2.53 1.46c.49.28.76.76.76 1.28s-.27 1-.76 1.28l-2.89 1.67-2.5-2.5 2.86-3.19zM6.05 2.66l10.76 6.22-2.27 2.27L6.05 2.66z"/></svg>
-            Play Store <span class="coming-soon">Coming Soon</span>
-          </a>
+          <a href="#pricing" class="btn-primary">Coming to iOS & Android</a>
+          <a href="#cli" class="btn-secondary">Try the CLI</a>
         </div>
-        <a href="#cli" class="hero-link">Free CLI for developers &rarr;</a>
       </div>
     </section>
 
     <!-- ===== HOW IT WORKS ===== -->
-    <section id="how-it-works">
+    <section class="how-it-works" id="how-it-works">
       <div class="container">
-        <h2 class="section-heading">How it works</h2>
-        <p class="section-subheading">Three steps. No sign-up required.</p>
-        <div class="features-list">
-          <div class="feature-item">
-            <div class="feature-number">1</div>
-            <div class="feature-content">
-              <h3>Scan any barcode</h3>
-              <p>Point your camera at any barcode. Instant nutritional data from a database with millions of products.</p>
-            </div>
+        <div class="section-label"><span>How it works</span></div>
+        <div class="steps-row">
+          <div class="step">
+            <div class="step-number">01</div>
+            <h3>Scan a barcode</h3>
+            <p>Point your camera at any food item. grub searches a community-maintained database of over 3 million products instantly.</p>
           </div>
-          <div class="feature-item">
-            <div class="feature-number">2</div>
-            <div class="feature-content">
-              <h3>See exactly where your calories went</h3>
-              <p>Breakfast, lunch, dinner, snacks&mdash;broken down by calories, protein, carbs, and fat. No guesswork.</p>
-              <div class="macro-colors">
-                <span class="macro-dot macro-dot--protein" title="Protein"></span><span class="macro-label">P</span>
-                <span class="macro-dot macro-dot--carbs" title="Carbs"></span><span class="macro-label">C</span>
-                <span class="macro-dot macro-dot--fat" title="Fat"></span><span class="macro-label">F</span>
-              </div>
-            </div>
+          <div class="step">
+            <div class="step-number">02</div>
+            <h3>See the full picture</h3>
+            <p>Calories, protein, carbs, fat — broken down clearly. No gamification, no guilt. Just the information you asked for.</p>
           </div>
-          <div class="feature-item">
-            <div class="feature-number">3</div>
-            <div class="feature-content">
-              <h3>Open the app and go</h3>
-              <p>No account. No onboarding. No internet required. Everything works offline from a local database you own. Your food history is always available, always private.</p>
-            </div>
+          <div class="step">
+            <div class="step-number">03</div>
+            <h3>Log and move on</h3>
+            <p>Add to your daily log with a tap. Track by meal — breakfast, lunch, dinner, snacks. Open the app, close it, live your life.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== ONE TOOL, EVERYWHERE ===== -->
-    <section id="cli">
-      <div class="container">
-        <h2 class="section-heading">One tool, everywhere</h2>
-        <p class="section-subheading">Phone, terminal, or self-hosted API. Same data, same simplicity.</p>
-        <div class="ecosystem-grid">
-          <div class="ecosystem-item">
-            <div class="ecosystem-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-            </div>
-            <div class="ecosystem-content">
-              <h3>iOS &amp; Android</h3>
-              <p>Barcode scanning, meal logging, daily summaries. One-time purchase, no subscription.</p>
-            </div>
-          </div>
-          <div class="ecosystem-item">
-            <div class="ecosystem-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-            </div>
-            <div class="ecosystem-content">
-              <h3>CLI</h3>
-              <p>Free, open source, and fast. Track from the terminal. Pipe it, script it, alias it.</p>
-            </div>
-          </div>
-          <div class="ecosystem-item">
-            <div class="ecosystem-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            </div>
-            <div class="ecosystem-content">
-              <h3>Self-hosted API</h3>
-              <p>Run <code>grub serve</code> on your network. Access your food log from any device, no cloud required.</p>
-            </div>
-          </div>
-        </div>
-        <div class="terminal">
-          <div class="terminal-bar">
-            <span class="terminal-dot"></span>
-            <span class="terminal-dot"></span>
-            <span class="terminal-dot"></span>
-            <span class="terminal-title">terminal</span>
-          </div>
-          <pre><code><span class="comment"># Log a meal</span>
-<span class="prompt">$</span> grub log "chicken breast" 200g --meal lunch
-
-<span class="comment"># Scan a barcode</span>
-<span class="prompt">$</span> grub barcode 3017620422003 --meal snack
-
-<span class="comment"># View today's summary</span>
-<span class="prompt">$</span> grub summary
-<span class="comment">
-  Breakfast  380 kcal   P: 28g  C: 42g  F: 10g
-  Lunch      520 kcal   P: 45g  C: 38g  F: 18g
-  Snack      210 kcal   P:  4g  C: 32g  F:  8g
-  ─────────────────────────────────────────────
-  Total     1110 kcal   P: 77g  C:112g  F: 36g</span></code></pre>
-        </div>
-        <div class="cli-actions">
-          <span class="cli-install"><code>cargo install grub-cli</code></span>
-          <a href="https://github.com/keiththompson/grub" rel="noopener">View on GitHub &rarr;</a>
         </div>
       </div>
     </section>
 
     <!-- ===== PRIVACY ===== -->
-    <section id="privacy">
+    <section class="privacy-section" id="privacy">
       <div class="container">
-        <h2 class="section-heading">Your data stays yours</h2>
-        <p class="section-subheading">Privacy isn't a feature. It's the foundation.</p>
-        <div class="privacy-claims">
-          <div class="privacy-claim">
-            <svg class="privacy-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <p><strong>Local SQLite database.</strong> All data lives on your device in a standard SQLite file you can inspect, export, or delete at any time.</p>
+        <div class="section-label"><span>Privacy</span></div>
+        <div class="privacy-content">
+          <div class="privacy-text">
+            <h2>Your food log is nobody's business.</h2>
+            <p>Most nutrition apps monetize your data. grub stores everything in a local SQLite file on your device. No accounts. No cloud sync you didn't ask for. No analytics. Zero telemetry.</p>
           </div>
-          <div class="privacy-claim">
-            <svg class="privacy-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <p><strong>Zero telemetry.</strong> No analytics, no usage tracking. We don't know you exist and that's by design.</p>
+          <dl class="privacy-table">
+            <div class="privacy-row">
+              <dt>Account</dt>
+              <dd>Not required. Ever.</dd>
+            </div>
+            <div class="privacy-row">
+              <dt>Data storage</dt>
+              <dd>Local SQLite. Your device only.</dd>
+            </div>
+            <div class="privacy-row">
+              <dt>Internet</dt>
+              <dd>Only for barcode lookups.</dd>
+            </div>
+            <div class="privacy-row">
+              <dt>Telemetry</dt>
+              <dd>None. Zero. Verified.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PLATFORMS ===== -->
+    <section class="platforms-section" id="cli">
+      <div class="container">
+        <div class="section-label"><span>One tool, everywhere</span></div>
+        <div class="platform-cards">
+          <div class="platform-card platform-card--dark">
+            <span class="platform-label">Mobile</span>
+            <h3>iOS & Android</h3>
+            <p class="platform-desc">Barcode scanning, meal logging, macro tracking. One-time purchase. Coming soon.</p>
           </div>
-          <div class="privacy-claim">
-            <svg class="privacy-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <p><strong>Open data.</strong> Built on a free, community-maintained food database. No proprietary lock-in.</p>
+          <div class="platform-card">
+            <span class="platform-label">Terminal</span>
+            <h3>CLI</h3>
+            <p class="platform-desc">Free and open source. Log meals, query your data, self-host an API — all from your terminal.</p>
           </div>
-          <div class="privacy-claim">
-            <svg class="privacy-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <p><strong>Sync on your terms.</strong> iCloud, local network, or file export. You choose how your data moves between devices&mdash;if it moves at all.</p>
+          <div class="platform-card">
+            <span class="platform-label">Network</span>
+            <h3>Self-hosted API</h3>
+            <p class="platform-desc">Run <code>grub serve</code> to access your food log from any device on your network. Your data stays home.</p>
           </div>
         </div>
-        <div class="stat-callout">
-          <div class="stat-number">80%</div>
-          <div class="stat-label">of fitness apps share your data with third parties</div>
-          <div class="stat-source">Source: Incogni, 2025</div>
+        <div class="cli-install">
+          <span class="prompt">$</span>
+          <code>cargo install grub-cli</code>
         </div>
       </div>
     </section>
 
     <!-- ===== PRICING ===== -->
-    <section id="pricing">
+    <section class="pricing-section" id="pricing">
       <div class="container">
-        <div class="pricing-card">
-          <h3>Pay once. Use forever.</h3>
-          <p class="pricing-desc">No subscription. No in-app purchases. No ads.</p>
-          <div class="pricing-badges">
-            <a href="#" class="badge">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-              App Store <span class="coming-soon">Coming Soon</span>
-            </a>
-            <a href="#" class="badge">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm.91-.52l2.53 1.46c.49.28.76.76.76 1.28s-.27 1-.76 1.28l-2.89 1.67-2.5-2.5 2.86-3.19zM6.05 2.66l10.76 6.22-2.27 2.27L6.05 2.66z"/></svg>
-              Play Store <span class="coming-soon">Coming Soon</span>
-            </a>
+        <div class="section-label"><span>Pricing</span></div>
+        <div class="pricing-content">
+          <div class="pricing-text">
+            <h2>Pay once.</h2>
+            <p>No subscriptions, no tiers, no upsells. Buy the app once for iOS or Android. The CLI is free and open source forever.</p>
+          </div>
+          <div class="pricing-card">
+            <span class="platform-label">Mobile app</span>
+            <div class="price-row">
+              <span class="price-amount">TBD</span>
+              <span class="price-period">one time</span>
+            </div>
+            <ul class="pricing-features">
+              <li>Barcode scanning & food database</li>
+              <li>Meal logging & macro tracking</li>
+              <li>All future updates included</li>
+              <li>No internet required after install</li>
+            </ul>
+            <a href="#" class="btn-primary">Coming Soon</a>
           </div>
         </div>
       </div>
@@ -227,46 +175,16 @@
   <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <a href="/" class="footer-logo">
-        <picture>
-          <source srcset="assets/mascot.webp" type="image/webp">
-          <img src="assets/mascot.png" alt="grub mascot" width="24" height="24">
-        </picture>
-        grub
-      </a>
-      <ul class="footer-links">
-        <li><a href="https://github.com/keiththompson/grub" rel="noopener">GitHub</a></li>
-        <li><a href="https://github.com/keiththompson/grub/blob/main/LICENSE" rel="noopener">MIT License</a></li>
-      </ul>
-      <p class="footer-privacy">No accounts, no analytics, no tracking.</p>
-      <div class="color-vision-picker">
-        <label for="color-vision-select">Colour vision</label>
-        <select id="color-vision-select">
-          <option value="">Default</option>
-          <option value="protanopia">Protanopia</option>
-          <option value="tritanopia">Tritanopia</option>
-          <option value="highContrast">High Contrast</option>
-        </select>
+      <div class="footer-brand">
+        <a href="/" class="logo">grub</a>
+        <p class="footer-tagline">Your nutrition. Your device. Your business.</p>
       </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/grub-tools/grub" rel="noopener">GitHub</a></li>
+        <li><a href="https://github.com/grub-tools/grub/blob/main/LICENSE" rel="noopener">MIT License</a></li>
+      </ul>
     </div>
   </footer>
 
-  <script>
-    (function() {
-      var sel = document.getElementById('color-vision-select');
-      var current = localStorage.getItem('colorVisionMode') || '';
-      sel.value = current;
-      sel.addEventListener('change', function() {
-        var v = sel.value;
-        if (v) {
-          localStorage.setItem('colorVisionMode', v);
-          document.documentElement.dataset.colorVision = v;
-        } else {
-          localStorage.removeItem('colorVisionMode');
-          delete document.documentElement.dataset.colorVision;
-        }
-      });
-    })();
-  </script>
 </body>
 </html>
