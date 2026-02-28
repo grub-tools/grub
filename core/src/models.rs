@@ -228,6 +228,37 @@ pub struct RecentFood {
     pub last_logged: String,
 }
 
+// --- Watch types (Apple Watch / Wear OS) ---
+
+/// Compact glance data for watch face complications and tiles.
+#[derive(Debug, Clone, Serialize)]
+pub struct WatchGlance {
+    pub date: String,
+    pub calories_eaten: f64,
+    pub calories_target: Option<i64>,
+    pub calories_remaining: Option<f64>,
+    pub protein_g: f64,
+    pub carbs_g: f64,
+    pub fat_g: f64,
+    pub protein_target_g: Option<f64>,
+    pub carbs_target_g: Option<f64>,
+    pub fat_target_g: Option<f64>,
+    pub meal_count: i64,
+    pub logging_streak: i64,
+}
+
+/// Compact recent food entry for quick re-logging on watch.
+#[derive(Debug, Clone, Serialize)]
+pub struct WatchRecentFood {
+    pub food_id: i64,
+    pub name: String,
+    pub brand: Option<String>,
+    pub calories_per_100g: f64,
+    pub last_serving_g: f64,
+    pub last_meal_type: String,
+    pub last_calories: f64,
+}
+
 // --- Weight tracking types ---
 
 #[derive(Debug, Clone, Serialize)]
