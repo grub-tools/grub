@@ -9,7 +9,7 @@ use crate::mfp_import::{self, MfpImportSummary};
 use crate::models::{
     DailySummary, DailyTarget, ExportData, Food, ImportSummary, MealEntry, NewFood, NewMealEntry,
     NewWeightEntry, RecentFood, Recipe, RecipeDetail, RecipeIngredient, SyncPayload,
-    SyncPushRequest, UpdateMealEntry, WatchGlance, WatchRecentFood, WeightEntry,
+    SyncPushRequest, UpdateMealEntry, WeightEntry,
 };
 
 /// Platform-native food lookup provider.
@@ -229,17 +229,6 @@ impl GrubService {
 
     pub fn get_calorie_average(&self, days: i64) -> Result<f64> {
         self.db.get_calorie_average(days)
-    }
-
-    // --- Watch (Apple Watch / Wear OS) ---
-
-    pub fn get_watch_glance(&self, date: &str) -> Result<WatchGlance> {
-        let date = NaiveDate::parse_from_str(date, "%Y-%m-%d")?;
-        self.db.build_watch_glance(date)
-    }
-
-    pub fn get_watch_recent_foods(&self, limit: i64) -> Result<Vec<WatchRecentFood>> {
-        self.db.get_watch_recent_foods(limit)
     }
 
     // --- Goal weight ---
@@ -491,78 +480,5 @@ mod tests {
 
         // Clear again returns false
         assert!(!svc.clear_goal_weight().unwrap());
-    }
-
-    #[test]
-    fn test_watch_glance_empty_day() {
-        let svc = GrubService::new_in_memory().unwrap();
-        let glance = svc.get_watch_glance("2024-06-15").unwrap();
-        assert_eq!(glance.date, "2024-06-15");
-        assert!((glance.calories_eaten - 0.0).abs() < f64::EPSILON);
-        assert_eq!(glance.meal_count, 0);
-        assert!(glance.calories_target.is_none());
-        assert!(glance.calories_remaining.is_none());
-    }
-
-    #[test]
-    fn test_watch_glance_with_meals() {
-        let svc = GrubService::new_in_memory().unwrap();
-        let food = svc.insert_food(&sample_food()).unwrap();
-
-        svc.log_meal("2024-06-15", "breakfast", food.id, 150.0)
-            .unwrap();
-        svc.log_meal("2024-06-15", "lunch", food.id, 200.0).unwrap();
-
-        let glance = svc.get_watch_glance("2024-06-15").unwrap();
-        assert_eq!(glance.meal_count, 2);
-        // 100 cal/100g * 150g + 100 cal/100g * 200g = 150 + 200 = 350
-        assert!((glance.calories_eaten - 350.0).abs() < 0.01);
-        assert!((glance.protein_g - 35.0).abs() < 0.01);
-        assert!((glance.carbs_g - 70.0).abs() < 0.01);
-        assert!((glance.fat_g - 17.5).abs() < 0.01);
-    }
-
-    #[test]
-    fn test_watch_glance_with_target() {
-        let svc = GrubService::new_in_memory().unwrap();
-        let food = svc.insert_food(&sample_food()).unwrap();
-
-        // Saturday = day_of_week 5
-        svc.set_target(5, 2000, Some(30), Some(40), Some(30))
-            .unwrap();
-
-        svc.log_meal("2024-06-15", "lunch", food.id, 200.0).unwrap();
-
-        let glance = svc.get_watch_glance("2024-06-15").unwrap();
-        assert_eq!(glance.calories_target, Some(2000));
-        // 2000 - 200 = 1800 remaining
-        assert!((glance.calories_remaining.unwrap() - 1800.0).abs() < 0.01);
-        assert!(glance.protein_target_g.is_some());
-        assert!(glance.carbs_target_g.is_some());
-        assert!(glance.fat_target_g.is_some());
-    }
-
-    #[test]
-    fn test_watch_recent_foods_empty() {
-        let svc = GrubService::new_in_memory().unwrap();
-        let recent = svc.get_watch_recent_foods(10).unwrap();
-        assert!(recent.is_empty());
-    }
-
-    #[test]
-    fn test_watch_recent_foods_with_meals() {
-        let svc = GrubService::new_in_memory().unwrap();
-        let food = svc.insert_food(&sample_food()).unwrap();
-
-        svc.log_meal("2024-06-15", "lunch", food.id, 200.0).unwrap();
-
-        let recent = svc.get_watch_recent_foods(10).unwrap();
-        assert_eq!(recent.len(), 1);
-        assert_eq!(recent[0].food_id, food.id);
-        assert_eq!(recent[0].name, "Test Food");
-        assert!((recent[0].last_serving_g - 200.0).abs() < f64::EPSILON);
-        assert_eq!(recent[0].last_meal_type, "lunch");
-        // 100 cal/100g * 200g = 200 cal
-        assert!((recent[0].last_calories - 200.0).abs() < 0.01);
     }
 }
